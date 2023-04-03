@@ -1,0 +1,14 @@
+1. All the restaurants whose cuisine match 'Jewish/Kosher'. Retrieve only their name field.
+Solution: {cuisine: “Jewish/Kosher”}
+
+2. All the restaurants whose borough is "Manhattan" and their cuisine is not "Irish"
+Solution: {$and: [{borough: 'Manhattan', cuisine: {$ne: "Irish"}}]}
+
+3. All the restaurants that have "A" grade and a score greater than 5 . Limit the search to 15 restaurants.
+Solution: {grades: {$elemMatch: { score: {$gt: 5}, grade: "A" }}}
+
+4. All the movies presented between 2000 and 2005, both years included and whose genres are 'Drama' AND 'Fantasy'. Retrieve only the name and year fields.
+Solution: {$and: [{year: {$gte: "2000"}}, {year: {$lte: "2005"}}, {genre: {$all: ["Drama", "Fantasy"]}}]}
+
+5. All the movies that are from 'Adventure' or 'Action' genre and has an rate greater than 7.5. Order the results by rate.
+{$and: [{rate: {$gte: "7.5"}}, {genre: {$in: ["Adventure", "Action"]}}]}

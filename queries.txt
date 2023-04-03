@@ -1,0 +1,37 @@
+// Comparison operators ($eq, $gt, $lt, $gte, $lte, $ne)
+{year: {$ne: "2003"}, rate: {$lte: "8.4"}}
+{year: {$ne: "2003"}, rate: {$gte: "8.4"}}
+{year: {$ne: "2003"}, rate: {$lt: "8.4"}}
+{year: {$ne: "2003"}, rate: {$gt: "8.4"}}
+{year: {$eq: "2003"}, rate: {$lte: "8.4"}}
+
+
+
+
+// Logic operators ($or, $and (implicit AND operation), $nor)
+{$or: [{year: "2003"}, {year: "2005"}, {director: "Peter Jackson"}]}
+{$and: [{year: "2003"}, {year: "2005"}, {director: "Peter Jackson"}]}
+{$and: [{$or: [{year: "2003"}, {year: "2005"}]}, {director: "Peter Jackson"}]}
+{$and: [{$nor: [{year: "2003"}, {year: "2005"}]}, {director: "Peter Jackson"}]}
+
+
+// Array logic operators (basic, $in, $nin, $all)
+{genre: "Drama"}
+{genre: {$in: ["Drama", "Adventure"]}} // OR
+{genre: {$nin: ["Drama", "Adventure"]}}
+{genre: {$all: ["Drama", "Adventure"]}} // AND
+
+
+
+// Element Query Operators ($exists)
+{$and: [{team: {$ne: "FCBarcelona"}}, {team: {$exists: true}}]}
+
+// Nested objects
+{'address.zipcode': "10019"}
+
+// Nested arrays
+{'grades.grade': 'A'} 
+{ grades: { $elemMatch: { grade: "A", score: { $eq: 2 } } } } 
+
+
+// Projections - Sort - Limit
